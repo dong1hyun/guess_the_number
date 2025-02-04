@@ -8,12 +8,13 @@ export default Title;
 
 const styles = StyleSheet.create({
     title: {
+        fontFamily: 'open-snas-bold',
         fontSize: 18,
-        fontWeight: 'bold',
         textAlign: 'center',
         color: 'white',
         borderWidth: 2,
         borderColor: 'white',
-        padding: 12
+        padding: 12,
+        maxWidth: '80%'
     }
 });
