@@ -1,4 +1,4 @@
-import { Alert, FlatList, StyleSheet, Text, View } from "react-native";
+import { Alert, FlatList, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import Title from "../components/ui/Title";
 import { useEffect, useState } from "react";
 import NumberContainer from "../components/game/NumberContainer";
@@ -22,6 +22,8 @@ function GameScreen({ userNumber, onGameOver }) {
     const initialGuess = generateRandomBetween(1, 100, userNumber);
     const [guessNumber, setGuessNumber] = useState(initialGuess);
     const [guessRounds, setGuessRounds] = useState([initialGuess]);
+    const {width} = useWindowDimensions();
+console.log(width)
     useEffect(() => {
         if (guessNumber === userNumber) {
             onGameOver(guessRounds.length);
@@ -56,10 +58,10 @@ function GameScreen({ userNumber, onGameOver }) {
     }
     const guessRoundsListLength = guessRounds.length;
     return (
-        <View style={styles.screen}>
-            <Title style={styles.title}>Computer's Guess</Title>
+        <View style={[styles.screen, {gap: width > 450 ? 8 : 24}]}>
+            <Title>Computer's Guess</Title>
+            <NumberContainer>{guessNumber}</NumberContainer>
             <Card>
-                <NumberContainer>{guessNumber}</NumberContainer>
                 <View>
                     <InstructionText style={styles.instructionText}>Higher or lower?</InstructionText>
                     <View style={styles.buttonsContainer}>
@@ -95,6 +97,7 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
         padding: 24,
+        alignItems: 'center',
     },
     instructionText: {
         marginBottom: 12

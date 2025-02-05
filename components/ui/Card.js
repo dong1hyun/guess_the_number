@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
     inputContainer: {
         alignItems: 'center',
         gap: 12,
-        marginTop: 36,
         padding: 16,
         marginHorizontal: 24,
         borderRadius: 8,
